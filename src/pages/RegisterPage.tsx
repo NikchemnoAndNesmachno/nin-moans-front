@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import ROUTE_PATHS from "../ways/routes.ts";
 import useLang from "../hooks/useLang.ts";
 import { createRegisterSchema } from "../validation/register.schema.ts";
+import API from "../ways/api.ts";
 
 const RegisterPage = () => {
     const { lang } = useLang();
@@ -37,13 +38,15 @@ const RegisterPage = () => {
 
     const onSubmit = async (data: RegisterFormData) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/register', {
+            const response = await axios.post('http://localhost:8080' + API.register, {
                 email: data.email,
+                username: data.userName,
                 password: data.password,
             });
             toast.success(`Реєстрація пройшла: ${response.data.email}`);
         } catch (error: any) {
-            // const message = error.response?.data?.error || AlertMessages.somethingWrong;
+            const message = error.response?.data?.error || "Something went wrong";
+
             toast.error(message);
         }
     };

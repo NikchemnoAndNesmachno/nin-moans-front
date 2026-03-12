@@ -1,16 +1,18 @@
-const API_ROOT = "/api"
+const API_ROOT = "/api/v1"
 const TOKEN_ROOT = API_ROOT + "/token"
-const LOGIN = "/login"
-const REGISTER = "/register"
+const LOGIN = "/auth/login"
+const REGISTER = "/auth/register"
 const REFRESH = "/refresh"
 const LOGOUT = "/logout"
 
 const API = {
     root: API_ROOT,
+    register: API_ROOT + REGISTER,
+    login: API_ROOT + LOGIN,
     token: {
         root: TOKEN_ROOT,
         login: TOKEN_ROOT + LOGIN,
-        register: TOKEN_ROOT + REGISTER,
+        register: API_ROOT + REGISTER,
         refresh: TOKEN_ROOT + REFRESH,
         logout: TOKEN_ROOT + LOGOUT
     },

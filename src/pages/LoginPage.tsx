@@ -11,6 +11,7 @@ import ROUTE_PATHS from "../ways/routes.ts";
 import useLang from "../hooks/useLang.ts";
 import {createLoginSchema} from "../validation/login.schema.ts";
 import {useMemo} from "react";
+import API from "../ways/api.ts";
 
 const LoginPage = () => {
     const {lang} = useLang();
@@ -35,7 +36,7 @@ const LoginPage = () => {
 
     const onSubmit = async (data: LoginFormData) => {
         try {
-            const response = await axios.post('http://localhost:5000/api/login', data);
+            const response = await axios.post('http://localhost:8080' + API.login, data);
             toast.success(`Вітаю, ${response.data.email}!`);
         } catch (error: any) {
             const message = error.response?.data?.error || 'Щось пішло не так';
